@@ -38,6 +38,274 @@
 -- - Selection of data, so that something similar to the sample "report"
 --   below can be achieved.
 
+DROP TABLE IF EXISTS movie;
+DROP TABLE IF EXISTS role;
+DROP TABLE IF EXISTS actor;
+
+CREATE TABLE movie (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    title TEXT, 
+    year INTEGER,
+    rating TEXT,
+    studio TEXT
+);
+CREATE TABLE actor (
+    id INTEGER PRIMARY KEY AUTOINCREMENT, 
+    first_name TEXT,
+    last_name text
+);
+CREATE TABLE role (
+    id INTEGER PRIMARY KEY AUTOINCREMENT, 
+    character TEXT,
+    title_id INTEGER,
+    actor_id INTEGER
+);
+
+INSERT INTO movie (
+    title,
+    year,
+    rating,
+    studio
+) VALUES (
+    "Batman Begins",
+    2005,
+    "PG-13",
+    "Warner Bros."
+    );
+INSERT INTO movie (
+    title,
+    year,
+    rating,
+    studio
+) VALUES (
+    "The Dark Knight",
+    2008,
+    "PG-13",
+    "Warner Bros."
+    );
+INSERT INTO movie (
+    title,
+    year,
+    rating,
+    studio
+) VALUES (
+    "The Dark Knight Rises",
+    2012,
+    "PG-13",
+    "Warner Bros."
+    );
+INSERT INTO actor (
+    first_name,
+    last_name
+) VALUES (
+    "Christian",
+    "Bale"
+);
+INSERT INTO actor (
+    first_name,
+    last_name
+) VALUES (
+    "Michael",
+    "Caine");
+INSERT INTO actor (
+    first_name,
+    last_name
+) VALUES (
+    "Liam",
+    "Neeson"
+);
+INSERT INTO actor (
+    first_name,
+    last_name
+) VALUES (
+    "Katie",
+    "Holmes"
+);
+INSERT INTO actor (
+    first_name,
+    last_name
+) VALUES (
+    "Gary",
+    "Oldman"
+);
+INSERT INTO actor (
+    first_name,
+    last_name
+) VALUES (
+"Heath",
+"Ledger"
+);
+INSERT INTO actor (
+    first_name,
+    last_name
+) VALUES (
+"Aaron",
+"Eckhart"
+);
+INSERT INTO actor (
+    first_name,
+    last_name
+) VALUES (
+"Maggie",
+"Gyllenhaal"
+);
+INSERT INTO actor (
+    first_name,
+    last_name
+) VALUES (
+    "Tom","Hardy"
+);
+INSERT INTO actor (
+    first_name,
+    last_name
+) VALUES (
+    "Joseph",
+    "Gordon-Levitt"
+);
+INSERT INTO actor (
+    first_name,
+    last_name
+) VALUES (
+    "Anne",
+    "Hathaway"
+);
+INSERT INTO role (
+    character,
+    title_id,
+    actor_id
+) VALUES (
+    "Bruce Wayne",
+    1,	
+    1);
+INSERT INTO role (
+    character,
+    title_id,
+    actor_id
+)VALUES (
+    "Alfred",
+    1,
+    2
+);
+INSERT INTO role (
+    character,
+    title_id,
+    actor_id
+)VALUES (
+    "Ra's Al Ghul",
+    1,
+    3
+);
+INSERT INTO role (
+    character,
+    title_id,
+    actor_id
+)VALUES (
+    "Rachel Dawes",
+    1,
+    4
+);
+INSERT INTO role (
+    character,
+    title_id,
+    actor_id
+)VALUES (
+    "Commissioner Gordon",
+    1,
+    5
+);
+INSERT INTO role (
+    character,
+    title_id,
+    actor_id
+)VALUES (
+    "Bruce Wayne",
+    2,
+    1
+);
+INSERT INTO role (
+    character,
+    title_id,
+    actor_id
+)VALUES (
+    "Joker",
+    2,
+    6);
+INSERT INTO role (
+    character,
+    title_id,
+    actor_id
+)VALUES (
+    "Harvey Dent",
+    2,
+    7
+);
+INSERT INTO role (
+    character,
+    title_id,
+    actor_id
+)VALUES (
+    "Alfred",
+    2,
+    2
+);
+INSERT INTO role (
+    character,
+    title_id,
+    actor_id
+)VALUES (
+    "Rachel Dawes",
+    2,
+    8
+);
+INSERT INTO role (
+    character,
+    title_id,
+    actor_id
+)VALUES (
+    "Bruce Wayne",
+    3,
+    1
+);
+INSERT INTO role (
+    character,
+    title_id,
+    actor_id
+)VALUES (
+    "Commissioner Gordon",
+    3,
+    5
+);
+INSERT INTO role (
+    character,
+    title_id,
+    actor_id
+)VALUES (
+    "Bane",
+    3,
+    9
+);
+INSERT INTO role (
+    character,
+    title_id,
+    actor_id
+)VALUES (
+    "John Blake",
+    3,
+    10
+);
+INSERT INTO role (
+    character,
+    title_id,
+    actor_id
+)VALUES (
+    "Selina Kyle",
+    3,
+    11
+);
+
+
+
+
 -- Rubric
 --
 -- 1. Domain model - 6 points
@@ -125,6 +393,9 @@
 .print "======"
 .print ""
 
+SELECT title, year, rating, studio
+FROM movie;
+
 -- The SQL statement for the movies output
 -- TODO!
 
@@ -134,6 +405,10 @@
 .print "========"
 .print ""
 
+SELECT movie.title, actor.first_name, actor.last_name, role.character
+FROM role
+INNER JOIN movie, actor
+ON role.title_id = movie.id AND role.actor_id = actor.id;
 
 -- The SQL statement for the cast output
 -- TODO!
